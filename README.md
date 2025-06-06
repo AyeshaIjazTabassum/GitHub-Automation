@@ -35,7 +35,43 @@ cd ./gradlew run
 ```
 </details>
 
-2. Agent Installation
+2. Run [Interface Agent](https://github.com/Coral-Protocol/Coral-Interface-Agent)
+<details>
+
+
+If you are trying to run Open Deep Research agent and require an input, you can either create your agent which communicates on the coral server or run and register the Interface Agent on the Coral Server. In a new terminal clone the repository:
+
+
+```bash
+git clone https://github.com/Coral-Protocol/Coral-Interface-Agent.git
+```
+Navigate to the project directory:
+```bash
+cd Coral-Interface-Agent
+```
+
+Install `uv`:
+```bash
+pip install uv
+```
+Install dependencies from `pyproject.toml` using `uv`:
+```bash
+uv sync
+```
+
+Configure API Key
+```bash
+export OPENAI_API_KEY=
+```
+
+Run the agent using `uv`:
+```bash
+uv run python 0-langchain-interface.py
+```
+
+</details>
+
+3. Agent Installation
 
 In a new terminal clone the repository
 ```bash
