@@ -93,27 +93,6 @@ Install dependencies from `pyproject.toml` using `uv`:
 uv sync
 ```
 
-
-Clone the repository:
-```bash
-git clone 
-```
-
-Navigate to the project directory:
-```bash
-cd 
-```
-
-Install `uv`:
-```bash
-pip install uv
-```
-
-Install dependencies from `pyproject.toml` using `uv`:
-```bash
-uv sync
-```
-
 This command will read the `pyproject.toml` file and install all specified dependencies in a virtual environment managed by `uv`.
 
 </details>
