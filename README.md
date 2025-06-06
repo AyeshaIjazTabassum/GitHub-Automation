@@ -73,6 +73,8 @@ uv run python 0-langchain-interface.py
 
 3. Agent Installation
 
+<details>
+
 In a new terminal clone the repository
 ```bash
 git clone https://github.com/Coral-Protocol/github-coral-agent.git
@@ -113,6 +115,8 @@ uv sync
 ```
 
 This command will read the `pyproject.toml` file and install all specified dependencies in a virtual environment managed by `uv`.
+
+</details>
 
 ### Configure Environment Variables
 Get the API Key:
