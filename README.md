@@ -1,9 +1,10 @@
 ## [Github Coral Agent](https://github.com/Coral-Protocol/github-coral-agent)
 
-The Github Coral Agent is an open-source agent designed for managing GitHub repositories using a multi-agent architecture.
+The Github Coral Agent is an open-source agent designed for managing GitHub repositories.
 
 ## Responsibility
-The Github Coral Agent manages GitHub repositories, supporting creation, updating, searching for repositories and files, handling issues and pull requests, and facilitating collaboration through comments and reviews.
+The Github Coral Agent is an open-source agent designed for managing GitHub repositories. It supports creating, updating, and searching for repositories and files, handling issues and pull requests, and facilitating collaboration through comments and reviews using a multi-agent architecture.
+
 
 ## Details
 - **Framework**: LangChain
@@ -15,56 +16,18 @@ The Github Coral Agent manages GitHub repositories, supporting creation, updatin
 
 ## Use the Agent
 
-### 1. Run Coral Server
+### 1. Clone & Install Dependencies
+
 <details>
 
-Ensure that the [Coral Server](https://github.com/Coral-Protocol/coral-server) is running on your system. In a new terminal, clone the repository:
+Ensure that the [Coral Server](https://github.com/Coral-Protocol/coral-server) is running on your system. If you are trying to run Open Deep Research agent and require an input, you can either create your agent which communicates on the coral server or run and register the [Interface Agent](https://github.com/Coral-Protocol/Coral-Interface-Agent) on the Coral Server.  
+
 
 ```bash
-# Clone the Coral Server repository
-git clone https://github.com/Coral-Protocol/coral-server.git
-
-# Navigate to the project directory
-cd coral-server
-
-# Run the server
-./gradlew run
-```
-</details>
-
-### 2.Run [Interface Agent](https://github.com/Coral-Protocol/Coral-Interface-Agent)
-<details>
-
-The Interface Agent is required to interact with the Github Coral Agent. In a new terminal, clone the repository:
-
-```bash
-# Clone the Interface Agent repository
-git clone https://github.com/Coral-Protocol/Coral-Interface-Agent.git
-
-# Navigate to the project directory
-cd Coral-Interface-Agent
-
-# Install `uv`:
-pip install uv
-
-# Install dependencies from `pyproject.toml` using `uv`:
-uv sync
-
-# Run the agent using `uv`:
-uv run python 0-langchain-interface.py
-```
-</details>
-
-### 3. Run Github Coral Agent
-<details>
-
-In a new terminal, clone the repository:
-
-```bash
-# Clone the Github Coral Agent repository
+# In a new terminal clone the repository:
 git clone https://github.com/Coral-Protocol/github-coral-agent.git
 
-# Navigate to the project directory
+# Navigate to the project directory:
 cd github-coral-agent
 
 # Install `uv`:
@@ -72,46 +35,59 @@ pip install uv
 
 # Install dependencies from `pyproject.toml` using `uv`:
 uv sync
+
+# Copy the client sse.py from utils to mcp package (Linux/ Mac)
+cp -r utils/sse.py .venv/lib/python3.13/site-packages/mcp/client/sse.py
+
+# OR Copy this for Windows
+cp -r utils\sse.py .venv\Lib\site-packages\mcp\client\sse.py
+
 ```
-This command will read the `pyproject.toml` file and install all specified dependencies in a virtual environment managed by `uv`.
+
 </details>
 
-### 4. Configure Environment Variables
+### 2. Configure Environment Variables
+
 <details>
 
 Get the API Key:
-[OpenAI](https://platform.openai.com/api-keys)
+[OpenAI](https://platform.openai.com/api-keys) || 
 [Github Token](https://github.com/settings/tokens)
 
-Rename the sample environment file to `.env` and add the keys:
 ```bash
+# Create .env file in project root
 cp -r .env_sample .env
 ```
-Check if the environment file has correct URL for Coral Server and adjust the parameters accordingly.
+
+Check if the .env file has correct URL for Coral Server and adjust the parameters accordingly.
+
 </details>
 
-### 5. Run Agent
+### 3. Run Agent
+
 <details>
 
-Run the agent using `uv`:
 ```bash
+# Run the agent using `uv`:
 uv run python github_coral_agent.py
 ```
 </details>
 
-### 6. Example
+### 4. Example
+
 <details>
 
 ```bash
 # Input:
-Ask the Interface Agent to create a new repository, open an issue, or search for a file using the Github Coral Agent.
+GitHub MCP instruction
 
-# Output:
-The Github Coral Agent will perform the requested GitHub task and return the result via the Interface Agent.
+#Output:
+The desired output from the Github MCP execution
 ```
+
 </details>
 
-## Creator Details
+### Creator Details
 - **Name**: Suman Deb
 - **Affiliation**: Coral Protocol
 - **Contact**: [Discord](https://discord.com/invite/Xjm892dtt3)
