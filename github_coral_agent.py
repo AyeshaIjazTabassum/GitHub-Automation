@@ -61,35 +61,44 @@ async def create_agent(coral_tools, agent_tools):
     return AgentExecutor(agent=agent, tools=combined_tools, verbose=True)
 
 async def main():
-	CORAL_SERVER_URL = f"{coral_base_url}?{query_string}"
-	async with MultiServerMCPClient(
-		connections = {
-			"coral": {
-				"transport": "sse",
-				"url": CORAL_SERVER_URL,
-				"timeout": 300,
-				"sse_read_timeout": 300
-			},
-			"github": {"command": 'npx', "args": ['-y', '@modelcontextprotocol/server-github'], "env": {"GITHUB_PERSONAL_ACCESS_TOKEN": os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN")}}
-		}
-    ) as multi_connection_client:
-			print("Multi Server Connection Established")
-			agent_tools = multi_connection_client.server_name_to_tools['github']
-			coral_tools = multi_connection_client.server_name_to_tools['coral']
-			print(f"Coral tools count: {len(coral_tools)} and agent tools count: {len(agent_tools)}")
-			
-			agent_executor = await create_agent(coral_tools, agent_tools)
-			
-			while True:
-				try:
-					print("Starting new agent invocation")
-					await agent_executor.ainvoke({"agent_scratchpad": []})
-					print("Completed agent invocation, restarting loop")
-					await asyncio.sleep(1)
-				except Exception as e:
-					print(f"Error in agent loop: {str(e)}")
-					print(traceback.format_exc())
-					await asyncio.sleep(5)
+    CORAL_SERVER_URL = f"{coral_base_url}?{query_string}"
+    print(CORAL_SERVER_URL)
+
+    client = MultiServerMCPClient(
+        connections={
+            "coral": {
+                "transport": "sse",
+                "url": CORAL_SERVER_URL,
+                "timeout": 300,
+                "sse_read_timeout": 300,
+            },
+            "github": {
+                "transport": "stdio",
+                "command": "npx",
+                "args": ["-y", "@modelcontextprotocol/server-github"],
+                "env": {"GITHUB_PERSONAL_ACCESS_TOKEN": os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN")},
+            },
+        }
+    )
+
+    print("Multi Server Connection Initialized")
+
+    coral_tools = await client.get_tools(server_name="coral")
+    github_tools = await client.get_tools(server_name="github")
+    print(f"Coral tools count: {len(coral_tools)}, GitHub tools count: {len(github_tools)}")
+
+    agent_executor = await create_agent(coral_tools, github_tools)
+
+    while True:
+        try:
+            print("Starting new agent invocation")
+            await agent_executor.ainvoke({"agent_scratchpad": []})
+            print("Completed agent invocation, restarting loop")
+            await asyncio.sleep(1)
+        except Exception as e:
+            print(f"Error in agent loop: {e}")
+            traceback.print_exc()
+            await asyncio.sleep(5)
 
 if __name__ == "__main__":
     asyncio.run(main())
