@@ -8,10 +8,12 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 load_dotenv()
 
-coral_base_url = os.getenv('coral_base_url')
+base_url = os.getenv("CORAL_SSE_URL")
+agentID = os.getenv("CORAL_AGENT_ID")
+
 coral_params = {
     "waitForAgents": 1,
-    "agentId": "github",
+    "agentId": agentID,
     "agentDescription": "You are a GitHub agent capable of managing repositories, including creating, updating, and searching for repositories and files, handling issues and pull requests, and facilitating collaboration through comments and reviews."
 }
 
@@ -51,8 +53,8 @@ async def create_agent(coral_tools, agent_tools):
     ])
 
     model = init_chat_model(
-            model=os.getenv('llm_model_name'),
-            model_provider=os.getenv('llm_model_provider'),
+            model='gpt-4o',
+            model_provider='openai',
             api_key=os.getenv("OPENAI_API_KEY"),
             temperature=0.3,
             max_tokens=16000
