@@ -63,7 +63,7 @@ async def create_agent(coral_tools, agent_tools):
     return AgentExecutor(agent=agent, tools=combined_tools, verbose=True)
 
 async def main():
-    CORAL_SERVER_URL = f"{coral_base_url}?{query_string}"
+    CORAL_SERVER_URL = f"{base_url}?{query_string}"
     print(CORAL_SERVER_URL)
 
     client = MultiServerMCPClient(
