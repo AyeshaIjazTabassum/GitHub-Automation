@@ -14,7 +14,7 @@ The Github Coral Agent is an open-source agent designed for managing GitHub repo
 - **Reference**: [Github MCP Repo](https://github.com/github/Coral-GithubMCP-Agent)
 - **License**: MIT
 
-## Use the Agent
+## Setup the Agent
 
 ### 1. Clone & Install Dependencies
 
