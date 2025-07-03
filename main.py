@@ -53,12 +53,13 @@ async def create_agent(coral_tools, agent_tools):
     ])
 
     model = init_chat_model(
-            model='gpt-4o',
-            model_provider='openai',
-            api_key=os.getenv("OPENAI_API_KEY"),
-            temperature=0.3,
-            max_tokens=16000
-        )
+        model=os.getenv("MODEL_NAME", "gpt-4.1"),
+        model_provider=os.getenv("MODEL_PROVIDER", "openai"),
+        api_key=os.getenv("API_KEY"),
+        temperature=os.getenv("MODEL_TEMPERATURE", "0.1"),
+        max_tokens=os.getenv("MODEL_TOKEN", "8000")
+    )
+    
     agent = create_tool_calling_agent(model, combined_tools, prompt)
     return AgentExecutor(agent=agent, tools=combined_tools, verbose=True)
 
