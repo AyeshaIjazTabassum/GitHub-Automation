@@ -95,15 +95,20 @@ applications:
 registry:
   githubmcp_agent:
     options:
-      - name: "API_KEY"
+       - name: "API_KEY"
         type: "string"
         description: "API key for the service"
+      - name: "GITHUB_PERSONAL_ACCESS_TOKEN"
+        type: "string"
+        description: "Github token for the service"
     runtime:
       type: "executable"
       command: ["bash", "-c", "${PROJECT_DIR}/run_agent.sh main.py"]
       environment:
         - name: "API_KEY"
           from: "API_KEY"
+        - name: "GITHUB_PERSONAL_ACCESS_TOKEN"
+          from: "GITHUB_PERSONAL_ACCESS_TOKEN"
         - name: "MODEL_NAME"
           value: "gpt-4.1"
         - name: "MODEL_PROVIDER"
