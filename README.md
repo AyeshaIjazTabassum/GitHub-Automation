@@ -20,7 +20,7 @@ The Github Coral Agent is an open-source agent designed for managing GitHub repo
 
 <details>
 
-Ensure that the [Coral Server](https://github.com/Coral-Protocol/coral-server) is running on your system. If you are trying to run Open Deep Research agent and require an input, you can either create your agent which communicates on the coral server or run and register the [Interface Agent](https://github.com/Coral-Protocol/Coral-Interface-Agent) on the Coral Server  
+Ensure that the [Coral Server](https://github.com/Coral-Protocol/coral-server) is running on your system. If you are trying to run Open Deep Research agent and require an input, you can either create your agent which communicates on the coral server or run and register the [Interface Agent](https://github.com/Coral-Protocol/Coral-Interface-Agent) on the Coral Server
 
 
 ```bash
@@ -53,7 +53,7 @@ uv sync
 <details>
 
 Get the API Key:
-[OpenAI](https://platform.openai.com/api-keys) || 
+[OpenAI](https://platform.openai.com/api-keys) ||
 [Github Token](https://github.com/settings/tokens)
 
 ```bash
@@ -67,10 +67,10 @@ Check if the .env file has correct URL for Coral Server and adjust the parameter
 
 ## Run the Agent
 
-You can run in either of the below modes to get your system running.  
+You can run in either of the below modes to get your system running.
 
-- The Executable Model is part of the Coral Protocol Orchestrator which works with [Coral Studio UI](https://github.com/Coral-Protocol/coral-studio).  
-- The Dev Mode allows the Coral Server and all agents to be seperately running on each terminal without UI support.  
+- The Executable Model is part of the Coral Protocol Orchestrator which works with [Coral Studio UI](https://github.com/Coral-Protocol/coral-studio).
+- The Dev Mode allows the Coral Server and all agents to be seperately running on each terminal without UI support.
 
 ### 1. Executable Mode
 
@@ -95,9 +95,9 @@ applications:
 registry:
   githubmcp_agent:
     options:
-       - name: "API_KEY"
+      - name: "MODEL_API_KEY"
         type: "string"
-        description: "API key for the service"
+        description: "API key for the model provider"
       - name: "GITHUB_PERSONAL_ACCESS_TOKEN"
         type: "string"
         description: "Github token for the service"
@@ -105,10 +105,8 @@ registry:
       type: "executable"
       command: ["bash", "-c", "${PROJECT_DIR}/run_agent.sh main.py"]
       environment:
-        - name: "API_KEY"
-          from: "API_KEY"
-        - name: "GITHUB_PERSONAL_ACCESS_TOKEN"
-          from: "GITHUB_PERSONAL_ACCESS_TOKEN"
+        - option: "MODEL_API_KEY"
+        - option: "GITHUB_PERSONAL_ACCESS_TOKEN"
         - name: "MODEL_NAME"
           value: "gpt-4.1"
         - name: "MODEL_PROVIDER"
