@@ -70,7 +70,7 @@ Check if the .env file has correct URL for Coral Server and adjust the parameter
 You can run in either of the below modes to get your system running.
 
 - The Executable Model is part of the Coral Protocol Orchestrator which works with [Coral Studio UI](https://github.com/Coral-Protocol/coral-studio).
-- The Dev Mode allows the Coral Server and all agents to be seperately running on each terminal without UI support.
+- The Dev Mode allows the Coral Server and all agents to be separately running on each terminal without UI support.
 
 ### 1. Executable Mode
 
