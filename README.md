@@ -81,19 +81,9 @@ Checkout: [How to Build a Multi-Agent System with Awesome Open Source Agents usi
 For Linux or MAC:
 
 ```bash
-# PROJECT_DIR="/PATH/TO/YOUR/PROJECT"
-
-applications:
-  - id: "app"
-    name: "Default Application"
-    description: "Default application for testing"
-    privacyKeys:
-      - "default-key"
-      - "public"
-      - "priv"
-
 registry:
-  githubmcp_agent:
+  # ... your other agents
+  github-mcp:
     options:
       - name: "MODEL_API_KEY"
         type: "string"
@@ -101,20 +91,33 @@ registry:
       - name: "GITHUB_PERSONAL_ACCESS_TOKEN"
         type: "string"
         description: "Github token for the service"
+      - name: "MODEL_NAME"
+        type: "string"
+        description: "What model to use (e.g 'gpt-4.1')"
+        default: "gpt-4.1"
+      - name: "MODEL_PROVIDER"
+        type: "string"
+        description: "What model provider to use (e.g 'openai', etc)"
+        default: "openai"
+      - name: "MODEL_TOKEN_LIMIT"
+        type: "number"
+        description: "Max tokens to use"
+        default: 16000
+      - name: "MODEL_TEMPERATURE"
+        type: "string"
+        description: "What model temperature to use"
+        default: "0.3"
+
     runtime:
       type: "executable"
-      command: ["bash", "-c", "${PROJECT_DIR}/run_agent.sh main.py"]
+      command: ["bash", "-c", "<replace with path to this agent>/run_agent.sh main.py"]
       environment:
         - option: "MODEL_API_KEY"
         - option: "GITHUB_PERSONAL_ACCESS_TOKEN"
-        - name: "MODEL_NAME"
-          value: "gpt-4.1"
-        - name: "MODEL_PROVIDER"
-          value: "openai"
-        - name: "MODEL_TOKEN"
-          value: "16000"
-        - name: "MODEL_TEMPERATURE"
-          value: "0.3"
+        - option: "MODEL_NAME"
+        - option: "MODEL_PROVIDER"
+        - option: "MODEL_TOKEN"
+        - option: "MODEL_TEMPERATURE"
 
 ```
 For Windows, create a powershell command (run_agent.ps1) and run:
