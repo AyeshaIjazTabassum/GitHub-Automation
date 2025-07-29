@@ -44,8 +44,8 @@ async def create_agent(coral_tools, agent_tools):
         model=os.getenv("MODEL_NAME", "gpt-4.1-mini"),
         model_provider=os.getenv("MODEL_PROVIDER", "openai"),
         api_key=os.getenv("MODEL_API_KEY"),
-        temperature=os.getenv("MODEL_TEMPERATURE", "0.1"),
-        max_tokens=os.getenv("MODEL_MAX_TOKENS", "8000"),
+        temperature=os.getenv("MODEL_TEMPERATURE", "0.3"),
+        max_tokens=os.getenv("MODEL_MAX_TOKENS", "16000"),
         base_url=os.getenv("MODEL_BASE_URL", None)
     )
     
