@@ -99,10 +99,10 @@ registry:
         type: "string"
         description: "What model provider to use (e.g 'openai', etc)"
         default: "openai"
-      - name: "MODEL_TOKEN_LIMIT"
-        type: "number"
+      - name: "MODEL_MAX_TOKENS"
+        type: "string"
         description: "Max tokens to use"
-        default: 16000
+        default: "16000"
       - name: "MODEL_TEMPERATURE"
         type: "string"
         description: "What model temperature to use"
@@ -116,7 +116,7 @@ registry:
         - option: "GITHUB_PERSONAL_ACCESS_TOKEN"
         - option: "MODEL_NAME"
         - option: "MODEL_PROVIDER"
-        - option: "MODEL_TOKEN"
+        - option: "MODEL_MAX_TOKENS"
         - option: "MODEL_TEMPERATURE"
 
 ```

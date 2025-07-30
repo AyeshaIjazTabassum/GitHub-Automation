@@ -41,11 +41,12 @@ async def create_agent(coral_tools, agent_tools):
     ])
 
     model = init_chat_model(
-        model=os.getenv("MODEL_NAME", "gpt-4.1"),
+        model=os.getenv("MODEL_NAME", "gpt-4.1-mini"),
         model_provider=os.getenv("MODEL_PROVIDER", "openai"),
         api_key=os.getenv("MODEL_API_KEY"),
         temperature=os.getenv("MODEL_TEMPERATURE", "0.1"),
-        max_tokens=os.getenv("MODEL_TOKEN", "8000")
+        max_tokens=os.getenv("MODEL_MAX_TOKENS", "8000"),
+        base_url=os.getenv("MODEL_BASE_URL", None)
     )
     
     agent = create_tool_calling_agent(model, combined_tools, prompt)
@@ -54,7 +55,7 @@ async def create_agent(coral_tools, agent_tools):
 async def main():
 
     runtime = os.getenv("CORAL_ORCHESTRATION_RUNTIME", None)
-    if runtime is None: # if we aren't orchestrated, we can load .env's
+    if runtime is None:
         load_dotenv()
 
     base_url = os.getenv("CORAL_SSE_URL")
@@ -62,7 +63,7 @@ async def main():
 
     coral_params = {
         "agentId": agentID,
-        "agentDescription": "An agent that can create, update, and search for repositories and files, as well as view/edit issues and pull requests (depending on permissions)"
+        "agentDescription": "Github agent can create, update, and search for repositories and files, as well as view/edit issues and pull requests (depending on permissions)"
     }
 
     query_string = urllib.parse.urlencode(coral_params)
