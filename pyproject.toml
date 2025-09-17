@@ -9,5 +9,7 @@ dependencies = [
     "langchain-groq==0.3.4",
     "langchain-mcp-adapters==0.1.7",
     "langchain-openai==0.3.26",
+    "pygithub>=2.8.1",
+    "python-dotenv>=1.1.0",
     "uv>=0.7.17",
 ]
