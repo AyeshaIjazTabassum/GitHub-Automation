@@ -6,5 +6,5 @@ The Github Agent is a stand-alone agent designed for managing GitHub repositorie
 2. Run the testing.py file to automate the functionalities.
 
 ## Setup the Agent
-1. Clone & Install Dependencies
-2. Configure Environment Variables
+1. Clone & Install Dependencies.
+2. Configure Environment Variables.
