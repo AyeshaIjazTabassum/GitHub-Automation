@@ -1,10 +1,8 @@
-## [Github MCP Agent](https://github.com/Coral-Protocol/Coral-GithubMCP-Agent)
+## GitHub Atomation Agent
 
-The Github Coral Agent is an open-source agent designed for managing GitHub repositories.
-
-## Responsibility
-The Github Coral Agent is an open-source agent designed for managing GitHub repositories. It supports creating, updating, and searching for repositories and files, handling issues and pull requests, and facilitating collaboration through comments and reviews using a multi-agent architecture.
-
+The Github Agent is a stand-alone agent designed for managing GitHub repositories.
+## Steps
+1. Go to the .env file and add 
 
 ## Details
 - **Framework**: LangChain
