@@ -1,6 +1,6 @@
 ## GitHub Atomation Agent
 
-The Github Agent is a stand-alone agent designed for managing GitHub repositories.
+The Github Agent is a stand-alone agent designed for managing GitHub repositories automatically.
 ## Steps
 1. Go to the .env file and add GITHUB_PERSONAL_ACCESS_TOKEN your GitHub token and MODEL_API_KEY your OpenAI Model API.
 2. Run the testing.py file to automate the functionalities.
